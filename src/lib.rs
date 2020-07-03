@@ -27,7 +27,7 @@ pub struct LibcAlloc;
 unsafe impl GlobalAlloc for LibcAlloc {
     #[inline]
     unsafe fn alloc(&self, layout: Layout) -> *mut u8 {
-        libc::malloc(layout.align().max(core::mem::size_of::<usize>())) as *mut u8
+        libc::malloc(layout.size()) as *mut u8
     }
 
     #[inline]
